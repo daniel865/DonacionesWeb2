@@ -7,7 +7,6 @@ import com.donaciones.dao.MunicipioDAO;
 import com.donaciones.entities.Departamento;
 import com.donaciones.entities.Jornada;
 import com.donaciones.entities.Municipio;
-import com.google.gson.Gson;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;

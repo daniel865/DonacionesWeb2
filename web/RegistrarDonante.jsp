@@ -57,6 +57,8 @@
                     <a class="navbar-brand" href="Inicio.jsp">Donaciones Web</a>
                 </div>
 
+                
+                
                 <!-- Colección de Link del Nav para el dashboard  parte izquierda-->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
