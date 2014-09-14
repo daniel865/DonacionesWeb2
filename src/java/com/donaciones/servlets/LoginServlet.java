@@ -5,8 +5,13 @@
  */
 package com.donaciones.servlets;
 
+import com.donaciones.dao.Conexion;
+import com.donaciones.dao.UsuarioDAO;
+import com.donaciones.entities.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -66,24 +71,34 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // get request parameters for userID and password
+        UsuarioDAO usuarioDAO = new UsuarioDAO(new Conexion("dba_donaciones", "donaciones", "jdbc:mysql://localhost/bd_donaciones"));
         String user = request.getParameter("user");
-        String pwd = request.getParameter("pass");
+        String pass = request.getParameter("pass");
+        Usuario usuario;
+        try {
+            usuario = usuarioDAO.autenticar(user, pass);
+            if (user.equals(usuario.getUsuario()) && pass.equals(usuario.getPassword())) {
+                Cookie loginCookie = new Cookie("user", user);
+                Cookie perfilCookie = new Cookie("perfil", usuario.getPerfil());
+                //setting cookie to expiry in 30 mins
+                loginCookie.setMaxAge(30 * 60);
+                perfilCookie.setMaxAge(30 * 60);
+                response.addCookie(loginCookie);
+                response.addCookie(perfilCookie);
+                response.sendRedirect("RegistrarJornada.jsp");
+                System.out.println("entro");
+                //request.getRequestDispatcher("Inicio.jsp").forward(request, response);
+            } else {
 
-        if (userID.equals(user) && password.equals(pwd)) {
-            Cookie loginCookie = new Cookie("user", user);
-            Cookie perfilCookie = new Cookie("perfil", "medico");
-            //setting cookie to expiry in 30 mins
-            loginCookie.setMaxAge(30 * 60);
-            perfilCookie.setMaxAge(30 * 60);
-            response.addCookie(loginCookie);
-            response.addCookie(perfilCookie);
-            response.sendRedirect("RegistrarJornada.jsp");
-        } else {
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/Login.jsp");
-            PrintWriter out = response.getWriter();
-            out.println("<font color=red>Either user name or password is wrong.</font>");
-            rd.include(request, response);
+                System.out.println("No entro");
+                request.setAttribute("mensaje", "Usuario y/o contraseña incorrectos");
+                request.getRequestDispatcher("Login.jsp").forward(request, response);
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("mensaje", " Usuario y/o contraseña incorrectos");
+            request.getRequestDispatcher("Login.jsp").forward(request, response);
         }
     }
 

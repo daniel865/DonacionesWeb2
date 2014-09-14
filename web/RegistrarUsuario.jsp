@@ -20,16 +20,16 @@
     String usuario = request.getAttribute("usuario") != null ? (String) request.getAttribute("usuario") : "";
     String correo = request.getAttribute("correo") != null ? (String) request.getAttribute("correo") : "";
     String pass = request.getAttribute("pass") != null ? (String) request.getAttribute("pass") : "";
-    String perfil = request.getAttribute("perfil") != null ? (String) request.getAttribute("perfil") : "";
+    String user_perfil = request.getAttribute("perfil") != null ? (String) request.getAttribute("perfil") : "";
     String estado = request.getAttribute("estado") != null ? (String) request.getAttribute("estado") : "";
     String buscar_usu = request.getAttribute("buscar_usu") != null ? (String) request.getAttribute("buscar_usu") : "";
-
+    
 %>
 
 <%if (mensaje != null) {%>
 <script>
     alert('<%=mensaje%>');
-
+    console.log()
 </script>
 <%}%>
 
@@ -60,7 +60,7 @@
         if (estado === "Inactivo") {
             $("#estado option[value=Inactivo]").attr("selected", true);
         }
-        var perfil = '<%=perfil%>';
+        var perfil = '<%=user_perfil%>';
         if (perfil === "Medico") {
             $("#perfil option[value=Medico]").attr("selected", true);
         }

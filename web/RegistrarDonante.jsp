@@ -27,6 +27,20 @@
     String nom_responsable = request.getAttribute("nom_responsable") != null ? (String) request.getAttribute("nom_responsable") : "";
     String tel_responsable = request.getAttribute("tel_responsable") != null ? (String) request.getAttribute("tel_responsable") : "";
     String estado = request.getAttribute("estado") != null ? (String) request.getAttribute("estado") : "";
+    String user = request.getAttribute("user") != null ? (String) request.getAttribute("user") : "";
+    String pass = request.getAttribute("pass") != null ? (String) request.getAttribute("pass") : "";
+    String perfil = request.getAttribute("perfil") != null ? (String) request.getAttribute("perfil") : "";
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("user")) {
+                user = cookie.getValue();
+            }
+            if ( cookie.getName().equals("perfil") ){
+                perfil = cookie.getValue();
+            }
+        }
+    }
 %>
 
 

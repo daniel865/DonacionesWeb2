@@ -23,6 +23,20 @@
     String estado = request.getAttribute("estado") != null ? (String) request.getAttribute("estado") : "";
     boolean load = (Boolean) request.getAttribute("load") != null ? (Boolean) request.getAttribute("load") : false;
     List<Jornada> listJornada = (List<Jornada>) request.getAttribute("listJornada") != null ? (List<Jornada>) request.getAttribute("listJornada") : null;
+    String user = request.getAttribute("user") != null ? (String) request.getAttribute("user") : "";
+    String pass = request.getAttribute("pass") != null ? (String) request.getAttribute("pass") : "";
+    String perfil = request.getAttribute("perfil") != null ? (String) request.getAttribute("perfil") : "";
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("user")) {
+                user = cookie.getValue();
+            }
+            if ( cookie.getName().equals("perfil") ){
+                perfil = cookie.getValue();
+            }
+        }
+    }
 %>
 
 <%if (mensaje != null) {%>
