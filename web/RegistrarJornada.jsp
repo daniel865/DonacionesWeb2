@@ -4,6 +4,7 @@
     Author     : daniel
 --%>
 
+<%@page import="com.donaciones.entities.Usuario"%>
 <%@page import="com.donaciones.entities.Municipio"%>
 <%@page import="com.donaciones.entities.Departamento"%>
 <%@page import="java.util.List"%>
@@ -11,6 +12,7 @@
 <!DOCTYPE html>
 
 <%
+    Usuario usuario = (Usuario) request.getSession().getAttribute("usuario"); 
     String mensaje = request.getAttribute("mensaje") != null ? (String) request.getAttribute("mensaje") : null;
     String codigo = request.getAttribute("codigo") != null ? (String) request.getAttribute("codigo") : "";
     String descripcion = request.getAttribute("descripcion") != null ? (String) request.getAttribute("descripcion") : "";
@@ -45,7 +47,7 @@
 
 <script>
     function recargarDatos() {
-        $(function() {
+        $(function () {
             var departamento = <%= departamento%>;
             var municipio = <%= municipio%>;
             $("#departamento").val(departamento);
@@ -66,8 +68,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registrar Jornada de Donación</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
-        <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script> 
         <script src="js/bootstrap.js"></script>
         <script type="text/javascript" src="js/jquery.validate.min.js"></script>
@@ -77,50 +77,54 @@
     <body onload="Javascript: recargarDatos();">
         <div id="wrapper">
 
+            <!--<nav class="navbar navbar-inverse navbar-fixed-top navbar-default" role="navigation">-->
             <!-- Menu Horizontal -->
-            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <nav class="navbar navbar-fixed-top navbar-default" role="navigation">
                 <!-- Agrupación de Elementos en navbar para dispositivos mobiles-->
-                <div class="navbar-header"> 
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"> <!-- Organizar data-target -->
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="Inicio.jsp">Donaciones Web</a>
+                <div class="container">
+                    <div class="navbar-header"> 
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"> <!-- Organizar data-target -->
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="Inicio.jsp">Donaciones Web</a>
+                    </div>
+
+                    <!-- Colección de Link del Nav para el dashboard  parte izquierda-->
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                        <ul class="nav navbar-nav side-nav">
+                            <li><a href="Inicio.jsp"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-save"></i> Gestionar <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="UsuarioServlet">Usuario</a></li>
+                                    <li><a href="DonanteServlet">Donante</a></li>
+                                    <li><a href="BolsaServlet">Bolsa de Sangre</a></li>
+                                    <li><a href="HospitalServlet">Hospital</a></li>
+                                    <li><a href="JornadaServlet">Jornada de Donación</a></li>
+                                </ul>                      
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-clipboard"></i> Reportes<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="ReporteUsuario.jsp">Usuarios</a></li>
+                                    <li><a href="ReporteJornada.jsp">Jornadas de Donación</a></li> 
+                                </ul>
+                            </li> 
+                        </ul>
+
+
+                        <!-- Coleccion de links del nav parte superior derecha -->
+                        <ul class="nav navbar-nav navbar-right navbar-user">
+                            <li><a>Ayuda</a></li>
+                            <li><a href="index.html">Salir</a></li>
+                        </ul>
+
+                    </div> <!-- Fin Barra Colapsada -->
+
                 </div>
-
-                <!-- Colección de Link del Nav para el dashboard  parte izquierda-->
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav side-nav">
-                        <li><a href="Inicio.jsp"><i class="fa fa-dashboard"></i> Inicio</a></li>
-                        <li class="dropdown active">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-save"></i> Gestionar <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="UsuarioServlet">Gestionar Usuario</a></li>
-                                <li><a href="DonanteServlet">Gestionar Donante</a></li>
-                                <li><a href="BolsaServlet">Gestionar Bolsa de Sangre</a></li>
-                                <li><a href="HospitalServlet">Gestionar Hospital</a></li>
-                                <li><a href="JornadaServlet">Gestionar Jornada de Donación</a></li>
-                            </ul>                      
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-clipboard"></i> Reportes<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="ReporteUsuario.jsp">Reporte Usuarios</a></li>
-                                <li><a href="ReporteJornada.jsp">Reporte Jornadas de Donación</a></li> 
-                            </ul>
-                        </li> 
-                    </ul>
-
-
-                    <!-- Coleccion de links del nav parte superior derecha -->
-                    <ul class="nav navbar-nav navbar-right navbar-user">
-                        <li><a>Ayuda</a></li>
-                        <li><a href="index.html">Salir</a></li>
-                    </ul>
-
-                </div> <!-- Fin Barra Colapsada -->
             </nav>
 
 
@@ -312,10 +316,10 @@
                     <!-- Groups Buttons -->
                     <div class="btn-group col-lg-offset-4 col-lg-5">
                         <!--<button type="button" class="btn btn-default" name="btnnuevo" id="btnnuevo">Nuevo</button>-->
-                        <input type="submit" class="btn btn-default " name="accion" value="Guardar" id="btnguardar" style="margin-left: 10px;"/>
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalBuscar" name="btnbuscar" id="btnbuscar" style="margin-left: 10px;">Consultar</button>
-                        <input type="submit" class="btn btn-default" name="accion" value="Modificar" id="btnmodificar" style="margin-left: 10px;"/> 
-                        <button type="button" class="btn btn-default" name="btneliminar" id="btneliminar" style="margin-left: 10px;">Eliminar</button> 
+                        <input type="submit" class="btn btn-primary" name="accion" value="Guardar" id="btnguardar" style="margin-left: 10px;"/>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalBuscar" name="btnbuscar" id="btnbuscar" style="margin-left: 10px;">Consultar</button>
+                        <input type="submit" class="btn btn-primary" name="accion" value="Modificar" id="btnmodificar" style="margin-left: 10px;"/> 
+                        <button type="button" class="btn btn-primary" name="btneliminar" id="btneliminar" style="margin-left: 10px;">Eliminar</button> 
                     </div>
 
                 </form>
