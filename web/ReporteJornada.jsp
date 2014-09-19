@@ -35,13 +35,48 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Reporte de Jornadas de Donación</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
-        <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
-        <link rel="stylesheet" type="text/css" href="css/inicio.css" />
         <script src="js/jquery-1.10.2.js"></script> 
         <script src="js/bootstrap.js"></script>
     </head>
     <body>
+        
+        <script type="text/javascript">
+       
+                var perfil = '<%=perfil%>';
+                alert(perfil);
+                switch (perfil) {
+                    case "Administrador":
+                        $("#Ges_donante").hide();
+                        $("#Ges_bolsa").hide();
+                        $("#Ges_hospital").hide();
+                        $("#Ges_jornada").hide();
+                        break;
+                    case "Auxiliar":
+                        $("#Ges_bolsa").hide();
+                        $("#Ges_hospital").hide();
+                        $("#Ges_jornada").hide();
+                        $("#Ges_usuario").hide();
+                        break;
+                    case "Bacteriologo":
+                        $("#Ges_hospital").hide();
+                        $("#Ges_jornada").hide();
+                        $("#Ges_usuario").hide();
+                        $("#Ges_donante").hide();
+                        break;
+                    case "Enfermera":
+                        $("#Ges_hospital").hide();
+                        $("#Ges_jornada").hide();
+                        break;
+                    case "Medico":
+                        $("#Ges_usuario").hide();
+                        $("#Ges_usuario").addClass(hide);
+                        break;
+                    default:
+                        break;
+                }
+   
+        </script>
+        
         <div id="wrapper">
 
             <!-- Menu Horizontal -->
@@ -64,19 +99,19 @@
                             <li><a href="Inicio.jsp"><i class="fa fa-dashboard"></i> Inicio</a></li>
                             <li class="dropdown active">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-save"></i> Gestionar <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="UsuarioServlet">Usuario</a></li>
-                                    <li><a href="DonanteServlet">Donante</a></li>
-                                    <li><a href="BolsaServlet">Bolsa de Sangre</a></li>
-                                    <li><a href="HospitalServlet">Hospital</a></li>
-                                    <li><a href="JornadaServlet">Jornada de Donación</a></li>
+                                <ul id="Gestiones" class="dropdown-menu">
+                                    <li id="Ges_usuario"><a href="UsuarioServlet">Usuario</a></li>
+                                    <li id="Ges_donante"><a href="DonanteServlet">Donante</a></li>
+                                    <li id="Ges_bolsa"><a href="BolsaServlet">Bolsa de Sangre</a></li>
+                                    <li id="Ges_hospital"><a href="HospitalServlet">Hospital</a></li>
+                                    <li id="Ges_jornada"><a href="JornadaServlet">Jornada de Donación</a></li>
                                 </ul>                      
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-clipboard"></i> Reportes<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="ReporteUsuario.jsp">Usuarios</a></li>
-                                    <li><a href="ReporteJornada.jsp">Jornadas de Donación</a></li> 
+                                <ul id="Reportes" class="dropdown-menu">
+                                    <li id="Rep_usuario"><a href="ReporteUsuario.jsp">Usuarios</a></li>
+                                    <li id="Rep_jornada"><a href="ReporteJornada.jsp">Jornadas de Donación</a></li> 
                                 </ul>
                             </li> 
                         </ul>

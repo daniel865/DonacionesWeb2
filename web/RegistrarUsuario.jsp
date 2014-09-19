@@ -20,16 +20,28 @@
     String usuario = request.getAttribute("usuario") != null ? (String) request.getAttribute("usuario") : "";
     String correo = request.getAttribute("correo") != null ? (String) request.getAttribute("correo") : "";
     String pass = request.getAttribute("pass") != null ? (String) request.getAttribute("pass") : "";
-    String user_perfil = request.getAttribute("perfil") != null ? (String) request.getAttribute("perfil") : "";
+    String user_perfil = request.getAttribute("user_perfil") != null ? (String) request.getAttribute("user_perfil") : "";
     String estado = request.getAttribute("estado") != null ? (String) request.getAttribute("estado") : "";
     String buscar_usu = request.getAttribute("buscar_usu") != null ? (String) request.getAttribute("buscar_usu") : "";
-    
+
+    String user = request.getAttribute("user") != null ? (String) request.getAttribute("user") : "";
+    String perfil = request.getAttribute("perfil") != null ? (String) request.getAttribute("perfil") : "";
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("user")) {
+                user = cookie.getValue();
+            }
+            if (cookie.getName().equals("perfil")) {
+                perfil = cookie.getValue();
+            }
+        }
+    }
 %>
 
 <%if (mensaje != null) {%>
 <script>
     alert('<%=mensaje%>');
-    console.log()
 </script>
 <%}%>
 
@@ -41,8 +53,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registrar Usuario</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
-        <link rel="stylesheet" type="text/css" href="css/dashboard.css" />
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script> 
         <script src="js/bootstrap.js"></script>
         <script type="text/javascript" src="js/jquery.validate.min.js"></script>
@@ -52,7 +62,7 @@
 
         <%if (mensaje != null) {%>
         <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         var estado = '<%=estado%>';
         if (estado === "Activo") {
             $("#estado option[value=Activo]").attr("selected", true);
@@ -79,6 +89,44 @@
 
     </head>
     <body>
+
+        <script type="text/javascript">
+   
+                var perfil = '<%=perfil%>';
+                alert("perfil usuario: " + perfil);
+                switch (perfil) {
+                    case "Administrador":
+                        $("#Ges_donante").hide();
+                        $("#Ges_bolsa").hide();
+                        $("#Ges_hospital").hide();
+                        $("#Ges_jornada").hide();
+                        break;
+                    case "Auxiliar":
+                        $("#Ges_bolsa").hide();
+                        $("#Ges_hospital").hide();
+                        $("#Ges_jornada").hide();
+                        $("#Ges_usuario").hide();
+                        break;
+                    case "Bacteriologo":
+                        $("#Ges_hospital").hide();
+                        $("#Ges_jornada").hide();
+                        $("#Ges_usuario").hide();
+                        $("#Ges_donante").hide();
+                        break;
+                    case "Enfermera":
+                        $("#Ges_hospital").hide();
+                        $("#Ges_jornada").hide();
+                        break;
+                    case "Medico":
+                        $("#Ges_usuario").hide();
+                        $("#Ges_usuario").addClass(hide);
+                        break;
+                    default:
+                        break;
+                }
+        
+        </script>
+
         <div id="wrapper">
 
             <!-- Menu Horizontal -->
@@ -101,19 +149,19 @@
                             <li><a href="Inicio.jsp"><i class="fa fa-dashboard"></i> Inicio</a></li>
                             <li class="dropdown active">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-save"></i> Gestionar <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="UsuarioServlet">Usuario</a></li>
-                                    <li><a href="DonanteServlet">Donante</a></li>
-                                    <li><a href="BolsaServlet">Bolsa de Sangre</a></li>
-                                    <li><a href="HospitalServlet">Hospital</a></li>
-                                    <li><a href="JornadaServlet">Jornada de Donación</a></li>
+                                <ul id="Gestiones" class="dropdown-menu">
+                                    <li id="Ges_usuario"><a href="UsuarioServlet">Usuario</a></li>
+                                    <li id="Ges_donante"><a href="DonanteServlet">Donante</a></li>
+                                    <li id="Ges_bolsa"><a href="BolsaServlet">Bolsa de Sangre</a></li>
+                                    <li id="Ges_hospital"><a href="HospitalServlet">Hospital</a></li>
+                                    <li id="Ges_jornada"><a href="JornadaServlet">Jornada de Donación</a></li>
                                 </ul>                      
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-clipboard"></i> Reportes<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="ReporteUsuario.jsp">Usuarios</a></li>
-                                    <li><a href="ReporteJornada.jsp">Jornadas de Donación</a></li> 
+                                <ul id="Reportes" class="dropdown-menu">
+                                    <li id="Rep_usuario"><a href="ReporteUsuario.jsp">Usuarios</a></li>
+                                    <li id="Rep_jornada"><a href="ReporteJornada.jsp">Jornadas de Donación</a></li> 
                                 </ul>
                             </li> 
                         </ul>
@@ -213,11 +261,13 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="perfil">Perfil*</label>
                             <div class="col-md-4 input-group">
-                                <select id="perfil" name="perfil" class="form-control" >
-                                    <option value=""></option>                                  
-                                    <option value="Medico">Médico</option>
-                                    <option value="Enfermera">Enfermera(o)</option>
+                                <select id="user_perfil" name="user_perfil" class="form-control" >
+                                    <option value=""></option> 
+                                    <option value="Administrador">Administrador</option>
+                                    <option value="Auxiliar">Auxiliar</option>
                                     <option value="Bacteriologo">Bacteriólogo(a)</option>
+                                    <option value="Enfermera">Enfermera(o)</option>
+                                    <option value="Medico">Médico</option>                  
                                 </select>
                             </div>
                         </div>
@@ -234,7 +284,7 @@
                             </div>
                         </div>
 
-                        
+
                         <div class="form-group container" style="margin-left: 290px;">
                             <label class="col-md-4 control-label">Los campos con * son obligatorios</label>
                         </div>

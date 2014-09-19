@@ -41,6 +41,8 @@ public class DonanteServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String accion = request.getParameter("accion");
+        
+        
         if (("Guardar").equals(accion)) {
             DonanteDAO donanteDAO = new DonanteDAO(new Conexion("dba_donaciones", "donaciones", "jdbc:mysql://localhost/bd_donaciones"));
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");

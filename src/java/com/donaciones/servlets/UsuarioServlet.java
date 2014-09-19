@@ -58,7 +58,7 @@ public class UsuarioServlet extends HttpServlet {
             String usuario = request.getParameter("usuario");
             String correo = request.getParameter("correo");
             String pass = request.getParameter("pass");
-            String perfil = request.getParameter("perfil");
+            String perfil = request.getParameter("user_perfil");
             String estado = request.getParameter("estado");
 
             try {
@@ -74,7 +74,7 @@ public class UsuarioServlet extends HttpServlet {
                 request.setAttribute("usuario", usuario);
                 request.setAttribute("correo", correo);
                 request.setAttribute("pass", pass);
-                request.setAttribute("perfil", perfil);
+                request.setAttribute("user_perfil", perfil);
                 request.setAttribute("estado", estado);
             }
             request.getRequestDispatcher("RegistrarUsuario.jsp").forward(request, response);
@@ -93,7 +93,7 @@ public class UsuarioServlet extends HttpServlet {
                 request.setAttribute("correo", usuario.getCorreo());
                 request.setAttribute("pass", usuario.getPassword());
                 request.setAttribute("pass2", usuario.getPassword());
-                request.setAttribute("perfil", usuario.getPerfil());
+                request.setAttribute("user_perfil", usuario.getPerfil());
                 request.setAttribute("estado", usuario.getEstado());
                 request.setAttribute("mensaje", "El usuario fue encontrado");
                 request.getRequestDispatcher("RegistrarUsuario.jsp").forward(request, response);
@@ -118,7 +118,7 @@ public class UsuarioServlet extends HttpServlet {
                 request.setAttribute("correo", usuario.getCorreo());
                 request.setAttribute("pass", usuario.getPassword());
                 request.setAttribute("pass2", usuario.getPassword());
-                request.setAttribute("perfil", usuario.getPerfil());
+                request.setAttribute("user_perfil", usuario.getPerfil());
                 request.setAttribute("estado", usuario.getEstado());
                 request.setAttribute("mensaje", "El usuario fue encontrado");
                 request.getRequestDispatcher("RegistrarUsuario.jsp").forward(request, response);
@@ -136,7 +136,7 @@ public class UsuarioServlet extends HttpServlet {
             String usuario = request.getParameter("usuario");
             String correo = request.getParameter("correo");
             String pass = request.getParameter("pass");
-            String perfil = request.getParameter("perfil");
+            String perfil = request.getParameter("user_perfil");
             String estado = request.getParameter("estado");
             try {
                 usuarioDAO.modificarUsuario(new Usuario(nro_identificacion, nombres, apellido1, apellido2, usuario, correo, pass, perfil, estado));
@@ -151,7 +151,7 @@ public class UsuarioServlet extends HttpServlet {
                 request.setAttribute("usuario", usuario);
                 request.setAttribute("correo", correo);
                 request.setAttribute("pass", pass);
-                request.setAttribute("perfil", perfil);
+                request.setAttribute("user_perfil", perfil);
                 request.setAttribute("estado", estado);
             }
             request.getRequestDispatcher("RegistrarUsuario.jsp").forward(request, response);
