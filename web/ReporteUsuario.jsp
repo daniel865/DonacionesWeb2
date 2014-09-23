@@ -41,8 +41,8 @@
     <body>
         
         <script type="text/javascript">
+            $(document).ready(function () {
                 var perfil = '<%=perfil%>';
-                alert(perfil);
                 switch (perfil) {
                     case "Administrador":
                         $("#Ges_donante").hide();
@@ -68,12 +68,11 @@
                         break;
                     case "Medico":
                         $("#Ges_usuario").hide();
-                        $("#Ges_usuario").addClass(hide);
                         break;
                     default:
                         break;
                 }
-
+            });
         </script>
         
         

@@ -41,7 +41,7 @@ public class DonanteServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String accion = request.getParameter("accion");
-        
+        accion = accion == null ? "Inicio" : accion;
         
         if (("Guardar").equals(accion)) {
             DonanteDAO donanteDAO = new DonanteDAO(new Conexion("dba_donaciones", "donaciones", "jdbc:mysql://localhost/bd_donaciones"));

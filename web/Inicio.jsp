@@ -25,18 +25,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Inicio</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-        <link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC' rel='stylesheet' type='text/css'>
-        <style>
-            h1 {
-                text-align: center;
-                color: black;
-                font-family: 'Playfair Display SC', serif;
-            }  
-
-        </style>
         <script src="js/jquery-1.10.2.js"></script> 
         <script src="js/bootstrap.js"></script>
-        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     </head>
     <body>
 
@@ -68,7 +58,6 @@
                         break;
                     case "Medico":
                         $("#Ges_usuario").hide();
-                        $("#Ges_usuario").addClass(hide);
                         break;
                     default:
                         break;

@@ -7,22 +7,32 @@ import com.donaciones.dao.MunicipioDAO;
 import com.donaciones.entities.Departamento;
 import com.donaciones.entities.Jornada;
 import com.donaciones.entities.Municipio;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.json.stream.JsonParserFactory;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import jdk.nashorn.internal.parser.JSONParser;
 import net.sf.jasperreports.engine.JasperRunManager;
 
 /**
@@ -283,29 +293,30 @@ public class JornadaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        /*
-         try {
-         MunicipioDAO municipioDAO = new MunicipioDAO(new Conexion("dba_donaciones", "donaciones", "jdbc:mysql://localhost/bd_donaciones"));
+        try {
+            MunicipioDAO municipioDAO = new MunicipioDAO(new Conexion("dba_donaciones", "donaciones", "jdbc:mysql://localhost/bd_donaciones"));
 
-         String selectedValue = request.getParameter("value");
-         System.out.println("Departamento: " + request.getParameter("departamento"));
-         System.out.println("Valor: " + request.getParameter("value"));
-         List<Municipio> listMunDep = municipioDAO.getMunicipiosDepartamento(Integer.parseInt(selectedValue));
-         Map<String, String> options = new HashMap<>();
-         for (int i = 0; i < listMunDep.size(); i++) {
-         Municipio municipio = listMunDep.get(i);
-         options.put(Integer.toString(municipio.getId()), municipio.getNombre());
-         }
-         System.out.println(options.toString());
-         String json = new Gson().toJson(options);
-         response.setContentType("application/json");
-         response.setCharacterEncoding("UTF-8");
-         response.getWriter().write(json);
-         request.setAttribute("listMunicipios", listMunDep);
-         } catch (Exception ex) {
-         Logger.getLogger(JornadaServlet.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         */
+            String selectedValue = request.getParameter("value");
+            System.out.println("Departamento: " + request.getParameter("departamento"));
+            System.out.println("Valor: " + request.getParameter("value"));
+            List<Municipio> listMunDep = municipioDAO.getMunicipiosDepartamento(Integer.parseInt(selectedValue));
+            Map<String, String> options = new HashMap<>();
+            for (int i = 0; i < listMunDep.size(); i++) {
+                Municipio municipio = listMunDep.get(i);
+                options.put(Integer.toString(municipio.getId()), municipio.getNombre());
+            }
+            String json = new Gson().toJson(options);
+
+            System.out.println("" + json);
+
+            response.setContentType("application/text");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
+
+            request.setAttribute("listMunicipios", listMunDep);
+        } catch (Exception ex) {
+            Logger.getLogger(JornadaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -343,6 +354,19 @@ public class JornadaServlet extends HttpServlet {
             Logger.getLogger(JornadaServlet.class.getName()).log(Level.SEVERE, null, e);
         }
 
+    }
+
+    public static List<String> parse(String jsonData) {
+        List<String> messages = new ArrayList<String>();
+        JsonElement jsonElement = new JsonParser().parse(jsonData);
+        JsonObject jsonTopObject = jsonElement.getAsJsonObject();
+        JsonArray jsonArray = jsonTopObject.getAsJsonArray("data").getAsJsonArray();
+        Iterator<JsonElement> iterator = jsonArray.iterator();
+        while (iterator.hasNext()) {
+            JsonObject jsonObject = iterator.next().getAsJsonObject();
+            messages.add(jsonObject.get("message").getAsString());
+        }
+        return messages;
     }
 
 }

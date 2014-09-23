@@ -36,7 +36,7 @@
     boolean load = (Boolean) request.getAttribute("load") != null ? (Boolean) request.getAttribute("load") : false;
     String cargoDepartamentos;
     String cargoMunicipios;
-    
+
     String user = request.getAttribute("user") != null ? (String) request.getAttribute("user") : "";
     String pass = request.getAttribute("pass") != null ? (String) request.getAttribute("pass") : "";
     String perfil = request.getAttribute("perfil") != null ? (String) request.getAttribute("perfil") : "";
@@ -71,46 +71,46 @@
         <script type="text/javascript" src="js/jquery.validate.min.js"></script>
         <script type="text/javascript" src="js/jquery.validate.bootstrap.popover.min.js"></script>
         <script type="text/javascript" src="js/ValidacionesJornada.js"></script>
+        <!--<script type="text/javascript" src="js/loadMunicipios.js"></script>-->
+        <!--<script type="text/javascript" src="js/Json.js"></script>-->
     </head>
     <body>
-        
-        <script type="text/javascript">
 
-                var perfil = '<%=perfil%>';
-                alert("perfil jornada: " + perfil);
-                switch (perfil) {
-                    case "Administrador":
-                        $("#Ges_donante").hide();
-                        $("#Ges_bolsa").hide();
-                        $("#Ges_hospital").hide();
-                        $("#Ges_jornada").hide();
-                        break;
-                    case "Auxiliar":
-                        $("#Ges_bolsa").hide();
-                        $("#Ges_hospital").hide();
-                        $("#Ges_jornada").hide();
-                        $("#Ges_usuario").hide();
-                        break;
-                    case "Bacteriologo":
-                        $("#Ges_hospital").hide();
-                        $("#Ges_jornada").hide();
-                        $("#Ges_usuario").hide();
-                        $("#Ges_donante").hide();
-                        break;
-                    case "Enfermera":
-                        $("#Ges_hospital").hide();
-                        $("#Ges_jornada").hide();
-                        break;
-                    case "Medico":
-                        $("#Ges_usuario").hide();
-                        $("#Ges_usuario").addClass(hide);
-                        break;
-                    default:
-                        break;
-                }
-            
+        <script type="text/javascript">
+    $(document).ready(function () {
+        var perfil = '<%=perfil%>';
+        switch (perfil) {
+            case "Administrador":
+                $("#Ges_donante").hide();
+                $("#Ges_bolsa").hide();
+                $("#Ges_hospital").hide();
+                $("#Ges_jornada").hide();
+                break;
+            case "Auxiliar":
+                $("#Ges_bolsa").hide();
+                $("#Ges_hospital").hide();
+                $("#Ges_jornada").hide();
+                $("#Ges_usuario").hide();
+                break;
+            case "Bacteriologo":
+                $("#Ges_hospital").hide();
+                $("#Ges_jornada").hide();
+                $("#Ges_usuario").hide();
+                $("#Ges_donante").hide();
+                break;
+            case "Enfermera":
+                $("#Ges_hospital").hide();
+                $("#Ges_jornada").hide();
+                break;
+            case "Medico":
+                $("#Ges_usuario").hide();
+                break;
+            default:
+                break;
+        }
+    });
         </script>
-        
+
         <div id="wrapper">
 
             <!--<nav class="navbar navbar-inverse navbar-fixed-top navbar-default" role="navigation">-->
@@ -395,27 +395,24 @@
 
         </div>
 
+
         <script>
             $(document).ready(function () {
-                var perfil = '<%=perfil%>';
-                console.log('perfil: ' + perfil);
-                alert(perfil);
+                $("#departamento").click(function () {
+                    var department = $("#departamento").val();
+                    $.ajax({
+                        dataType: "text",
+                        url: 'JornadaServlet?value=' + department,
+                        data: department,
+                        success: function (data, textStatus, jqXHR) {
+                        console.log('entro sucess: ' + data);
+                    }, error: function (jqXHR, textStatus, errorThrown) {
+                        console.log('entro error');
+                    }
+                    });
+                });
             });
-            /*function recargarDatos() {
-             $(function () {
-             var departamento = <%= departamento%>;
-             var municipio = <%= municipio%>;
-             $("#departamento").val(departamento);
-             $("#municipio").val(municipio);
-             });
-             var estado = <%= estado%>;
-             if (estado === "Activo") {
-             $("#estado option[value=Activo]").attr("selected", true);
-             }
-             if (estado === "Inactivo") {
-             $("#estado option[value=Inactivo]").attr("selected", true);
-             }
-             }*/
         </script>
+
     </body>
 </html>

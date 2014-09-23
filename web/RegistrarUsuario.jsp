@@ -71,14 +71,15 @@
             $("#estado option[value=Inactivo]").attr("selected", true);
         }
         var perfil = '<%=user_perfil%>';
+        console.log(perfil);
         if (perfil === "Medico") {
-            $("#perfil option[value=Medico]").attr("selected", true);
+            $("#user_perfil option[value=Medico]").attr("selected", true);
         }
         if (perfil === "Enfermera") {
-            $("#perfil option[value=Enfermera]").attr("selected", true);
+            $("#user_perfil option[value=Enfermera]").attr("selected", true);
         }
         if (perfil === "Bacteriologo") {
-            $("#perfil option[value=Bacteriologo]").attr("selected", true);
+            $("#user_perfil option[value=Bacteriologo]").attr("selected", true);
         }
     });
 
@@ -91,9 +92,8 @@
     <body>
 
         <script type="text/javascript">
-   
+            $(document).ready(function () {
                 var perfil = '<%=perfil%>';
-                alert("perfil usuario: " + perfil);
                 switch (perfil) {
                     case "Administrador":
                         $("#Ges_donante").hide();
@@ -119,12 +119,11 @@
                         break;
                     case "Medico":
                         $("#Ges_usuario").hide();
-                        $("#Ges_usuario").addClass(hide);
                         break;
                     default:
                         break;
                 }
-        
+            });
         </script>
 
         <div id="wrapper">

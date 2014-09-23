@@ -4,29 +4,20 @@
  * and open the template in the editor.
  */
 
-$(document).ready(function() {
-    /*$('#departamento').click(function() { 
-        var opciones={
-            url:"",
-            cache:"false",
-            contentType:"application/json",
-            type:"POST"
-        };
-        $.ajax(opciones).done(function(data){
-            
-        }).fail(function(){
-            
+$(document).ready(function () {
+    $("#departamento").change(function (event) {
+        var departamento = $("select#departamento").val();
+        console.log(departamento);
+        $.get('JornadaServlet', {
+            departments: departamento
+        }, function (response) {
+            console.log(response);
+            //Código para agregar opciones al select
+            var select = $('#municipio');
+            select.find('option').remove();
+            $.each(response, function (index, value) {
+                $('<option>').val(value).text(value).appendTo(select);
+            });
         });
-            */
-     
-  // Locate HTML DOM element with ID "somebutton" and assign the following function to its "click" event...
-        $.get('JornadaServlet', function(responseJson) {    // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
-            var option=createElement("<option>Prueba</option>");
-            var municipios=document.getELementById("municipio");
-            console.log(municipios);
-            console.log(option);
-            municipios.appendChild(option);
-            
-        });
-    
+    });
 });
