@@ -5,14 +5,8 @@
  */
 package com.donaciones.servlets;
 
-import com.donaciones.dao.Conexion;
-import com.donaciones.dao.UsuarioDAO;
-import com.donaciones.entities.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -24,12 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author daniel
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
-
-    private static final long serialVersionUID = 1L;
-    private final String userID = "dan865";
-    private final String password = "da10";
+@WebServlet(name = "Logout", urlPatterns = {"/Logout"})
+public class Logout extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,7 +32,29 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
 
+        String user = null;
+        String perfil = null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("user")) {
+                    user = cookie.getValue();
+                }
+                if (cookie.getName().equals("perfil")) {
+                    perfil = cookie.getValue();
+                }
+            }
+        }
+        Cookie loginCookie = new Cookie("user", user);
+        Cookie perfilCookie = new Cookie("perfil", perfil);
+        //setting cookie to expiry in 30 mins
+        loginCookie.setMaxAge(0);
+        perfilCookie.setMaxAge(0);
+        response.addCookie(loginCookie);
+        response.addCookie(perfilCookie);
+        response.sendRedirect("index.html");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -71,36 +83,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        UsuarioDAO usuarioDAO = new UsuarioDAO(new Conexion("dba_donaciones", "donaciones", "jdbc:mysql://localhost/bd_donaciones"));
-        String user = request.getParameter("user");
-        String pass = request.getParameter("pass");
-        Usuario usuario;
-        try {
-            usuario = usuarioDAO.autenticar(user, pass);
-            if (user.equals(usuario.getUsuario()) && pass.equals(usuario.getPassword())) {
-                if (usuario.getEstado().equals("Inactivo")) {
-                    request.setAttribute("mensaje", "El usuario se encuentra desactivado");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
-                } else {
-                    Cookie loginCookie = new Cookie("user", user);
-                    Cookie perfilCookie = new Cookie("perfil", usuario.getPerfil());
-                    //setting cookie to expiry in 30 mins
-                    loginCookie.setMaxAge(30 * 60);
-                    perfilCookie.setMaxAge(30 * 60);
-                    response.addCookie(loginCookie);
-                    response.addCookie(perfilCookie);
-                    response.sendRedirect("Inicio.jsp");
-                }
-            } else {
-                request.setAttribute("mensaje", "Usuario y/o contraseña incorrectos");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
-
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-            request.setAttribute("mensaje", " Usuario y/o contraseña incorrectos");
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
-        }
+        processRequest(request, response);
     }
 
     /**

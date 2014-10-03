@@ -15,18 +15,18 @@ public class Donante {
     private String nombres;
     private String apellido1;
     private String apellido2;
-    private long telefono;
+    private String telefono;
     private String direccion;
     private String correo;
-    private Date fec_naciminiento;
-    private Date fec_donacion;
-    private String enfermedades;
-    private String habitos;
+    private String fec_naciminiento;
+    private String fec_donacion;
+    private int enfermedades;
+    private int habitos;
     private String nombre_rep;
-    private long telefono_rep;
+    private String telefono_rep;
     private String genero;
-    private String departamento;
-    private String municipio;
+    private int departamento;
+    private int municipio;
     private String estado;
 
     /**
@@ -50,7 +50,7 @@ public class Donante {
      * @param municipio Municipio de Nacimiento
      * @param estado Estado del Donante
      */
-    public Donante(String tipo_documento, String nro_identificacion, String nombres, String apellido1, String apellido2, long telefono, String direccion, String correo, Date fec_naciminiento, Date fec_donacion, String enfermedades, String habitos, String nombre_rep, long telefono_rep, String genero, String departamento, String municipio, String estado) {
+    public Donante(String tipo_documento, String nro_identificacion, String nombres, String apellido1, String apellido2, String telefono, String direccion, int departamento, int municipio,String correo, String fec_naciminiento, String fec_donacion, int enfermedades, int habitos, String nombre_rep, String telefono_rep, String genero, String estado) {
         this.tipo_documento = tipo_documento;
         this.nro_identificacion = nro_identificacion;
         this.nombres = nombres;
@@ -58,6 +58,8 @@ public class Donante {
         this.apellido2 = apellido2;
         this.telefono = telefono;
         this.direccion = direccion;
+        this.departamento = departamento;
+        this.municipio = municipio;
         this.correo = correo;
         this.fec_naciminiento = fec_naciminiento;
         this.fec_donacion = fec_donacion;
@@ -65,9 +67,7 @@ public class Donante {
         this.habitos = habitos;
         this.nombre_rep = nombre_rep;
         this.telefono_rep = telefono_rep;
-        this.genero = genero;
-        this.departamento = departamento;
-        this.municipio = municipio;
+        this.genero = genero;   
         this.estado = estado;
     }
 
@@ -174,7 +174,7 @@ public class Donante {
      * Obtiene el teléfono del donante
      * @return Número de teléfono
      */
-    public long getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
@@ -182,7 +182,7 @@ public class Donante {
      * Asigna un valor al número de teléfono del donantes
      * @param telefono Número de Teléfono
      */
-    public void setTelefono(long telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -222,7 +222,7 @@ public class Donante {
      * Obtiene la fecha de nacimiento del donante
      * @return Fecha de Nacimiento
      */
-    public Date getFec_naciminiento() {
+    public String getFec_naciminiento() {
         return fec_naciminiento;
     }
 
@@ -230,7 +230,7 @@ public class Donante {
      * Asigna la fecha de nacimiento del donante
      * @param fec_naciminiento Fecha de Nacimiento
      */
-    public void setFec_naciminiento(Date fec_naciminiento) {
+    public void setFec_naciminiento(String fec_naciminiento) {
         this.fec_naciminiento = fec_naciminiento;
     }
 
@@ -238,7 +238,7 @@ public class Donante {
      * Obtiene la última fecha de donación del donante
      * @return Fecha de donación
      */
-    public Date getFec_donacion() {
+    public String getFec_donacion() {
         return fec_donacion;
     }
 
@@ -246,7 +246,7 @@ public class Donante {
      * Asigna la fecha de donación del donante
      * @param fec_donacion Fecha de donación
      */
-    public void setFec_donacion(Date fec_donacion) {
+    public void setFec_donacion(String fec_donacion) {
         this.fec_donacion = fec_donacion;
     }
 
@@ -254,7 +254,7 @@ public class Donante {
      * Obtiene las enfermedades del donante
      * @return Enfermedades del donante
      */
-    public String getEnfermedades() {
+    public int getEnfermedades() {
         return enfermedades;
     }
 
@@ -262,7 +262,7 @@ public class Donante {
      * Asigna las enfermedades al donates
      * @param enfermedades Enfermedades
      */
-    public void setEnfermedades(String enfermedades) {
+    public void setEnfermedades(int enfermedades) {
         this.enfermedades = enfermedades;
     }
 
@@ -270,7 +270,7 @@ public class Donante {
      * Obtiene los hábitos del donante
      * @return Hábitos del donante
      */
-    public String getHabitos() {
+    public int getHabitos() {
         return habitos;
     }
 
@@ -278,7 +278,7 @@ public class Donante {
      * Asigna los hábitos del donante
      * @param habitos Hábitos del donante
      */
-    public void setHabitos(String habitos) {
+    public void setHabitos(int habitos) {
         this.habitos = habitos;
     }
 
@@ -302,7 +302,7 @@ public class Donante {
      * Obtiene el teléfono del responsable del donante
      * @return Teléfono del responsable
      */
-    public long getTelefono_rep() {
+    public String getTelefono_rep() {
         return telefono_rep;
     }
 
@@ -310,7 +310,7 @@ public class Donante {
      * Asigna el teléfono del responsable del donante
      * @param telefono_rep Teléfono del responsable
      */
-    public void setTelefono_rep(long telefono_rep) {
+    public void setTelefono_rep(String telefono_rep) {
         this.telefono_rep = telefono_rep;
     }
 
@@ -334,7 +334,7 @@ public class Donante {
      * Obtiene el departamento del donantes
      * @return Departamento
      */
-    public String getDepartamento() {
+    public int getDepartamento() {
         return departamento;
     }
 
@@ -342,7 +342,7 @@ public class Donante {
      * Asigna un valor para el departamento del donante
      * @param departamento Departamento
      */
-    public void setDepartamento(String departamento) {
+    public void setDepartamento(int departamento) {
         this.departamento = departamento;
     }
 
@@ -350,7 +350,7 @@ public class Donante {
      * Obtiene el municipio del donante
      * @return Municipio Donante
      */
-    public String getMunicipio() {
+    public int getMunicipio() {
         return municipio;
     }
 
@@ -358,8 +358,13 @@ public class Donante {
      * Asigna un valo para el municipio del donante
      * @param municipio Municipio donante
      */
-    public void setMunicipio(String municipio) {
+    public void setMunicipio(int municipio) {
         this.municipio = municipio;
+    }
+
+    @Override
+    public String toString() {
+        return "Donante{" + "tipo_documento=" + tipo_documento + ", nro_identificacion=" + nro_identificacion + ", nombres=" + nombres + ", apellido1=" + apellido1 + ", apellido2=" + apellido2 + ", telefono=" + telefono + ", direccion=" + direccion + ", correo=" + correo + ", fec_naciminiento=" + fec_naciminiento + ", fec_donacion=" + fec_donacion + ", enfermedades=" + enfermedades + ", habitos=" + habitos + ", nombre_rep=" + nombre_rep + ", telefono_rep=" + telefono_rep + ", genero=" + genero + ", departamento=" + departamento + ", municipio=" + municipio + ", estado=" + estado + '}';
     }
     
     

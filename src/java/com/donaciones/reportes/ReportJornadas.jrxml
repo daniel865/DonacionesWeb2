@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportJornadas" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5ef6aa13-377d-4228-ae29-299f39c8d8fa">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="264"/>
+	<queryString>
+		<![CDATA[SELECT
+     jornada.`codigo_jor` AS jornada_codigo_jor,
+     jornada.`descripcion_jor` AS jornada_descripcion_jor,
+     jornada.`fecha_jor` AS jornada_fecha_jor,
+     jornada.`departamento_jor` AS jornada_departamento_jor,
+     jornada.`municipio_jor` AS jornada_municipio_jor,
+     jornada.`direccion_jor` AS jornada_direccion_jor,
+     jornada.`cantidad_donantes_jor` AS jornada_cantidad_donantes_jor,
+     jornada.`sangre_a1_jor` AS jornada_sangre_a1_jor,
+     jornada.`sangre_a2_jor` AS jornada_sangre_a2_jor,
+     jornada.`sangre_ab1_jor` AS jornada_sangre_ab1_jor,
+     jornada.`sangre_ab2_jor` AS jornada_sangre_ab2_jor,
+     jornada.`sangre_b1_jor` AS jornada_sangre_b1_jor,
+     jornada.`sangre_b2_jor` AS jornada_sangre_b2_jor,
+     jornada.`sangre_o1_jor` AS jornada_sangre_o1_jor,
+     jornada.`sangre_o2_jor` AS jornada_sangre_o2_jor,
+     jornada.`estado_jor` AS jornada_estado_jor,
+     jornada.`observaciones_jor` AS jornada_observaciones_jor
+FROM
+     `jornada` jornada]]>
+	</queryString>
+	<field name="jornada_codigo_jor" class="java.lang.String"/>
+	<field name="jornada_descripcion_jor" class="java.lang.String"/>
+	<field name="jornada_fecha_jor" class="java.lang.String"/>
+	<field name="jornada_departamento_jor" class="java.lang.Integer"/>
+	<field name="jornada_municipio_jor" class="java.lang.Integer"/>
+	<field name="jornada_direccion_jor" class="java.lang.String"/>
+	<field name="jornada_cantidad_donantes_jor" class="java.lang.Integer"/>
+	<field name="jornada_sangre_a1_jor" class="java.lang.Integer"/>
+	<field name="jornada_sangre_a2_jor" class="java.lang.Integer"/>
+	<field name="jornada_sangre_ab1_jor" class="java.lang.Integer"/>
+	<field name="jornada_sangre_ab2_jor" class="java.lang.Integer"/>
+	<field name="jornada_sangre_b1_jor" class="java.lang.Integer"/>
+	<field name="jornada_sangre_b2_jor" class="java.lang.Integer"/>
+	<field name="jornada_sangre_o1_jor" class="java.lang.Integer"/>
+	<field name="jornada_sangre_o2_jor" class="java.lang.Integer"/>
+	<field name="jornada_estado_jor" class="java.lang.String"/>
+	<field name="jornada_observaciones_jor" class="java.lang.String"/>
+	<variable name="jornada_sangre_a1_jor_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{jornada_sangre_a1_jor}]]></variableExpression>
+	</variable>
+	<variable name="jornada_sangre_a2_jor_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{jornada_sangre_a2_jor}]]></variableExpression>
+	</variable>
+	<variable name="jornada_sangre_ab1_jor_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{jornada_sangre_ab1_jor}]]></variableExpression>
+	</variable>
+	<variable name="jornada_sangre_ab2_jor_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{jornada_sangre_ab2_jor}]]></variableExpression>
+	</variable>
+	<variable name="jornada_sangre_b1_jor_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{jornada_sangre_b1_jor}]]></variableExpression>
+	</variable>
+	<variable name="jornada_sangre_b2_jor_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{jornada_sangre_b2_jor}]]></variableExpression>
+	</variable>
+	<variable name="jornada_sangre_o1_jor_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{jornada_sangre_o1_jor}]]></variableExpression>
+	</variable>
+	<variable name="jornada_sangre_o2_jor_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{jornada_sangre_o2_jor}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="15" y="0" width="100" height="20" uuid="ced54e91-c35e-4e8f-a0aa-171f94de365c"/>
+				<textFieldExpression><![CDATA[$F{jornada_codigo_jor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<summary>
+		<band height="305" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="50" height="20" uuid="37cde1b1-c85f-4ab6-8ae6-e4fd2d7c2c20"/>
+				<textFieldExpression><![CDATA[$V{jornada_sangre_a1_jor_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="0" width="43" height="20" uuid="f283d96f-5164-49de-974c-89cce8706ffd"/>
+				<textFieldExpression><![CDATA[$V{jornada_sangre_a2_jor_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="93" y="0" width="61" height="20" uuid="1f407426-d4a9-4769-a9d2-6199618baf02"/>
+				<textFieldExpression><![CDATA[$V{jornada_sangre_ab1_jor_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="0" width="46" height="20" uuid="d1ae3bb8-0d18-485a-9e15-9f231281f154"/>
+				<textFieldExpression><![CDATA[$V{jornada_sangre_ab2_jor_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="43" height="20" uuid="44628e64-ba88-49e0-a459-f38bbe454a97"/>
+				<textFieldExpression><![CDATA[$V{jornada_sangre_b1_jor_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="243" y="0" width="38" height="20" uuid="13ba4087-d2a7-467a-9868-a148c88656a0"/>
+				<textFieldExpression><![CDATA[$V{jornada_sangre_b2_jor_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="281" y="0" width="44" height="20" uuid="895e022b-d302-47e7-b7cd-c1a976008ebf"/>
+				<textFieldExpression><![CDATA[$V{jornada_sangre_o1_jor_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="325" y="0" width="46" height="20" uuid="6eb2d3c1-f7c4-4614-95e4-6df3b82f25cb"/>
+				<textFieldExpression><![CDATA[$V{jornada_sangre_o2_jor_1}]]></textFieldExpression>
+			</textField>
+			<stackedBarChart>
+				<chart>
+					<reportElement x="50" y="37" width="505" height="268" uuid="36426e50-98c1-446c-ab4c-b896a3e9e78c"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset incrementType="Report"/>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{jornada_codigo_jor}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{jornada_sangre_a1_jor}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{jornada_sangre_a1_jor}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{jornada_codigo_jor}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{jornada_sangre_a2_jor}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{jornada_sangre_a2_jor}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Sangre AB+"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{jornada_sangre_ab1_jor}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{jornada_sangre_ab1_jor}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</stackedBarChart>
+		</band>
+	</summary>
+</jasperReport>

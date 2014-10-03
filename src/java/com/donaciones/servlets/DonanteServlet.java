@@ -42,7 +42,7 @@ public class DonanteServlet extends HttpServlet {
 
         String accion = request.getParameter("accion");
         accion = accion == null ? "Inicio" : accion;
-        
+
         if (("Guardar").equals(accion)) {
             DonanteDAO donanteDAO = new DonanteDAO(new Conexion("dba_donaciones", "donaciones", "jdbc:mysql://localhost/bd_donaciones"));
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -52,7 +52,6 @@ public class DonanteServlet extends HttpServlet {
             String primer_apellido = request.getParameter("primer_apellido");
             String segundo_apellido = request.getParameter("segundo_apellido");
             String telefono = request.getParameter("telefono");
-            Long.parseLong(telefono);
             String direccion = request.getParameter("direccion");
             String departamento = request.getParameter("departamento");
             String municipio = request.getParameter("municipio");
@@ -60,24 +59,15 @@ public class DonanteServlet extends HttpServlet {
             String correo = request.getParameter("correo");
             String fecha_nacimiento = request.getParameter("fecha_nacimiento");
             String fecha_ultdonacion = request.getParameter("fec_ultdonacion");
-            Date fec_nacimiento2 = null;
-            Date fec_ultdonacion2 = null;
-            try {
-                java.util.Date fec_nacimiento = formatter.parse(fecha_nacimiento);
-                java.util.Date fec_ultdonacion = formatter.parse(fecha_ultdonacion);
-                fec_nacimiento2 = new Date(fec_nacimiento.getTime());
-                fec_ultdonacion2 = new Date(fec_ultdonacion.getTime());
-            } catch (ParseException ex) {
-                Logger.getLogger(DonanteServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
             String enfermedades = request.getParameter("enfermedades");
             String habitos = request.getParameter("habitos");
             String nom_responsable = request.getParameter("nom_responsable");
             String tel_responsable = request.getParameter("tel_responsable");
-            Long.parseLong(tel_responsable);
             String estado = request.getParameter("estado");
             try {
-                donanteDAO.crearDonante(new Donante(tipo_doc, nro_doc, nombres, primer_apellido, segundo_apellido, Long.parseLong(telefono), direccion, correo, fec_nacimiento2, fec_ultdonacion2, enfermedades, habitos, nom_responsable, Long.parseLong(tel_responsable), genero, departamento, municipio, estado));
+                donanteDAO.crearDonante(new Donante(tipo_doc, nro_doc, nombres, primer_apellido, segundo_apellido, telefono, direccion, Integer.parseInt(departamento),
+                        Integer.parseInt(municipio), correo, fecha_nacimiento, fecha_ultdonacion, Integer.parseInt(enfermedades), Integer.parseInt(habitos), nom_responsable,
+                        tel_responsable, genero, estado));
                 request.setAttribute("mensaje", "Donante creado correctament");
             } catch (Exception e) {
                 Logger.getLogger(DonanteServlet.class.getName()).log(Level.SEVERE, null, e);
@@ -117,14 +107,14 @@ public class DonanteServlet extends HttpServlet {
                     request.setAttribute("segundo_apellido", donante.getApellido2());
                     request.setAttribute("telefono", donante.getTelefono());
                     request.setAttribute("direccion", donante.getDireccion());
-                    request.setAttribute("departamento", donante.getDepartamento());
-                    request.setAttribute("municipio", donante.getMunicipio());
+                    request.setAttribute("departamento", Integer.toString(donante.getDepartamento()));
+                    request.setAttribute("municipio", Integer.toString(donante.getMunicipio()));
                     request.setAttribute("genero", donante.getGenero());
                     request.setAttribute("correo", donante.getCorreo());
                     request.setAttribute("fecha_nacimiento", donante.getFec_naciminiento());
                     request.setAttribute("fec_ultdonacion", donante.getFec_donacion());
-                    request.setAttribute("enfermedades", donante.getEnfermedades());
-                    request.setAttribute("habitos", donante.getHabitos());
+                    request.setAttribute("enfermedades", Integer.toString(donante.getEnfermedades()));
+                    request.setAttribute("habitos", Integer.toString(donante.getHabitos()));
                     request.setAttribute("nom_responsable", donante.getNombre_rep());
                     request.setAttribute("tel_responsable", donante.getTelefono_rep());
                     request.setAttribute("estado", donante.getEstado());
@@ -137,14 +127,12 @@ public class DonanteServlet extends HttpServlet {
             } else {
                 if (("Modificar").equals(accion)) {
                     DonanteDAO donanteDAO = new DonanteDAO(new Conexion("dba_donaciones", "donaciones", "jdbc:mysql://localhost/bd_donaciones"));
-                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                     String tipo_doc = request.getParameter("tipo_doc");
                     String nro_doc = request.getParameter("nro_doc");
                     String nombres = request.getParameter("nombres");
                     String primer_apellido = request.getParameter("primer_apellido");
                     String segundo_apellido = request.getParameter("segundo_apellido");
                     String telefono = request.getParameter("telefono");
-                    Long.parseLong(telefono);
                     String direccion = request.getParameter("direccion");
                     String departamento = request.getParameter("departamento");
                     String municipio = request.getParameter("municipio");
@@ -152,24 +140,15 @@ public class DonanteServlet extends HttpServlet {
                     String correo = request.getParameter("correo");
                     String fecha_nacimiento = request.getParameter("fecha_nacimiento");
                     String fecha_ultdonacion = request.getParameter("fec_ultdonacion");
-                    Date fec_nacimiento2 = null;
-                    Date fec_ultdonacion2 = null;
-                    try {
-                        java.util.Date fec_nacimiento = formatter.parse(fecha_nacimiento);
-                        java.util.Date fec_ultdonacion = formatter.parse(fecha_ultdonacion);
-                        fec_nacimiento2 = new Date(fec_nacimiento.getTime());
-                        fec_ultdonacion2 = new Date(fec_ultdonacion.getTime());
-                    } catch (ParseException ex) {
-                        Logger.getLogger(DonanteServlet.class.getName()).log(Level.SEVERE, null, ex);
-                    }
                     String enfermedades = request.getParameter("enfermedades");
                     String habitos = request.getParameter("habitos");
                     String nom_responsable = request.getParameter("nom_responsable");
                     String tel_responsable = request.getParameter("tel_responsable");
-                    Long.parseLong(tel_responsable);
                     String estado = request.getParameter("estado");
                     try {
-                        donanteDAO.modificarDonante(new Donante(tipo_doc, nro_doc, nombres, primer_apellido, segundo_apellido, Long.parseLong(telefono), direccion, correo, fec_nacimiento2, fec_ultdonacion2, enfermedades, habitos, nom_responsable, Long.parseLong(tel_responsable), genero, departamento, municipio, estado));
+                        donanteDAO.modificarDonante(new Donante(tipo_doc, nro_doc, nombres, primer_apellido, segundo_apellido, telefono, direccion, Integer.parseInt(departamento),
+                                Integer.parseInt(municipio), correo, fecha_nacimiento, fecha_ultdonacion, Integer.parseInt(enfermedades), Integer.parseInt(habitos), nom_responsable,
+                                tel_responsable, genero, estado));
                         request.setAttribute("mensaje", "Donante modificado correctamente");
                     } catch (Exception e) {
                         Logger.getLogger(DonanteServlet.class.getName()).log(Level.SEVERE, null, e);
@@ -193,6 +172,8 @@ public class DonanteServlet extends HttpServlet {
                         request.setAttribute("tel_responsable", tel_responsable);
                         request.setAttribute("estado", estado);
                     }
+                    request.getRequestDispatcher("RegistrarDonante.jsp").forward(request, response);
+                } else if ("Inicio".equals(accion)) {
                     request.getRequestDispatcher("RegistrarDonante.jsp").forward(request, response);
                 }
             }

@@ -93,12 +93,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registrar Bolsas de Sangre</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrapValidator.min.css" />
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script> 
-        <script src="js/bootstrap.js"></script>
-        <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-        <script type="text/javascript" src="js/additional-methods.min.js"></script>
-        <script type="text/javascript" src="js/jquery.validate.bootstrap.popover.min.js"></script>
-        <script type="text/javascript" src="js/ValidacionesBolsas.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/bootstrapValidator.js"></script>
+        <script type="text/javascript" src="js/validateBolsa.js"></script>
+        
     </head>
     <body onload="JavaScript: recargarDatos();">
 
@@ -180,13 +180,15 @@
                         <!-- Coleccion de links del nav parte superior derecha -->
                         <ul class="nav navbar-nav navbar-right navbar-user">
                             <li><a>Ayuda</a></li>
-                            <li><a href="index.html">Salir</a></li>
+                            <li><a href="Logout">Salir</a></li>
                         </ul>
 
                     </div> <!-- Fin Barra Colapsada -->
 
                 </div>
             </nav>
+            
+            <br/>
 
             <!--Inicio del Formulario -->
             <div class="container">
@@ -281,7 +283,7 @@
                         <!-- Textarea -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="observaciones">Observaciones</label>
-                            <div class="col-md-4">                     
+                            <div class="col-md-4 input-group">                     
                                 <textarea class="form-control" id="observaciones" name="observaciones"><%=observaciones%></textarea>
                             </div>
                         </div>
@@ -304,10 +306,10 @@
 
                         <!-- Groups Buttons -->
                         <div class="btn-group col-lg-offset-4 col-lg-5">
-                            <input type="submit" class="btn btn-default " name="accion" value="Guardar" id="btnguardar" style="margin-left: 10px;" />
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ModalBuscar" name="btnbuscar" id="btnbuscar" style="margin-left: 10px;">Consultar</button>
-                            <input type="submit" class="btn btn-default" name="accion" value="Modificar" id="btnmodificar" style="margin-left: 10px;"/> 
-                            <button type="button" class="btn btn-default" name="btneliminar" id="btneliminar" style="margin-left: 10px;">Eliminar</button> 
+                            <input type="submit" class="btn btn-primary " name="accion" value="Guardar" id="btnguardar" style="margin-left: 10px;" />
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalBuscar" name="btnbuscar" id="btnbuscar" style="margin-left: 10px;">Consultar</button>
+                            <input type="submit" class="btn btn-primary" name="accion" value="Modificar" id="btnmodificar" style="margin-left: 10px;"/> 
+                            <button type="reset" class="btn btn-primary" name="btnlimpiar" id="btnlimpiar" style="margin-left: 10px;">Limpiar</button> 
                         </div>
 
                         <br/>

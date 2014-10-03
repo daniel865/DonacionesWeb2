@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2cdb3b0a-11b8-4494-b03a-5f67148c799c">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cod_jor" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     jornada.`codigo_jor` AS jornada_codigo_jor,
+     jornada.`descripcion_jor` AS jornada_descripcion_jor,
+     jornada.`fecha_jor` AS jornada_fecha_jor,
+     jornada.`departamento_jor` AS jornada_departamento_jor,
+     jornada.`municipio_jor` AS jornada_municipio_jor,
+     jornada.`direccion_jor` AS jornada_direccion_jor,
+     jornada.`cantidad_donantes_jor` AS jornada_cantidad_donantes_jor,
+     jornada.`sangre_a1_jor` AS jornada_sangre_a1_jor,
+     jornada.`sangre_a2_jor` AS jornada_sangre_a2_jor,
+     jornada.`sangre_ab1_jor` AS jornada_sangre_ab1_jor,
+     jornada.`sangre_ab2_jor` AS jornada_sangre_ab2_jor,
+     jornada.`sangre_b1_jor` AS jornada_sangre_b1_jor,
+     jornada.`sangre_b2_jor` AS jornada_sangre_b2_jor,
+     jornada.`sangre_o1_jor` AS jornada_sangre_o1_jor,
+     jornada.`sangre_o2_jor` AS jornada_sangre_o2_jor,
+     jornada.`estado_jor` AS jornada_estado_jor,
+     jornada.`observaciones_jor` AS jornada_observaciones_jor
+FROM
+     `jornada` jornada
+WHERE
+      jornada.`codigo_jor` =  $P{cod_jor}]]>
+	</queryString>
+	<field name="jornada_codigo_jor" class="java.lang.String"/>
+	<field name="jornada_descripcion_jor" class="java.lang.String"/>
+	<field name="jornada_fecha_jor" class="java.lang.String"/>
+	<field name="jornada_departamento_jor" class="java.lang.Integer"/>
+	<field name="jornada_municipio_jor" class="java.lang.Integer"/>
+	<field name="jornada_direccion_jor" class="java.lang.String"/>
+	<field name="jornada_cantidad_donantes_jor" class="java.lang.Integer"/>
+	<field name="jornada_sangre_a1_jor" class="java.lang.Integer"/>
+	<field name="jornada_sangre_a2_jor" class="java.lang.Integer"/>
+	<field name="jornada_sangre_ab1_jor" class="java.lang.Integer"/>
+	<field name="jornada_sangre_ab2_jor" class="java.lang.Integer"/>
+	<field name="jornada_sangre_b1_jor" class="java.lang.Integer"/>
+	<field name="jornada_sangre_b2_jor" class="java.lang.Integer"/>
+	<field name="jornada_sangre_o1_jor" class="java.lang.Integer"/>
+	<field name="jornada_sangre_o2_jor" class="java.lang.Integer"/>
+	<field name="jornada_estado_jor" class="java.lang.String"/>
+	<field name="jornada_observaciones_jor" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="99" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="22" width="555" height="43" uuid="e0f7d0bd-4d6a-4526-9eb7-2271f74ffc2f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Bookman Old Style" size="22" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Detalle - Reporte Jornada]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="193" splitType="Stretch">
+			<staticText>
+				<reportElement x="31" y="0" width="105" height="20" uuid="81f2a5a9-acc2-4351-be57-62af752d53b9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Código: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="162" y="0" width="139" height="20" uuid="3040e599-1e45-43e3-9674-b657bd3c8df9"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jornada_codigo_jor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="31" y="20" width="105" height="20" uuid="93b9251a-b191-4e3c-a955-43c9918b29a8"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Descripción:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="162" y="20" width="139" height="20" uuid="7b37e6e3-cd23-4d83-a26b-8ac08658b9e5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jornada_descripcion_jor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="301" y="20" width="66" height="20" uuid="a8232f04-d121-4323-8fdc-bed9cc9ba662"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Fecha:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="367" y="20" width="151" height="20" uuid="0833a4d3-1486-44f2-91ba-68a5bf80f73d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jornada_fecha_jor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="31" y="40" width="105" height="20" uuid="322feabe-89ec-4c22-a00b-ea95ad92992e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Dirección:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="162" y="40" width="139" height="20" uuid="1e082208-1984-4cf1-b3d4-95de3b783c22"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jornada_direccion_jor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="31" y="60" width="131" height="20" uuid="624c435e-587a-4962-b7da-a5a81685630b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Cantidad Donantes:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="162" y="60" width="139" height="20" uuid="d47419a1-1e54-4107-94c7-37be6ab62ada"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jornada_cantidad_donantes_jor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="31" y="80" width="105" height="20" uuid="90f5fc5d-66e8-40d4-9358-3a26a047e4ac"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Sangre A+ :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="162" y="80" width="139" height="20" uuid="e6414a6a-613a-47c3-84a6-ffefc626f3b6"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jornada_sangre_a1_jor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="301" y="80" width="103" height="20" uuid="40575767-fd89-457f-a6d6-46b03fa22233"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Sangre A- :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="404" y="80" width="151" height="20" uuid="de57bb36-cd53-4e42-9a94-49ea740e0eb2"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jornada_sangre_a2_jor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="31" y="100" width="105" height="20" uuid="71ef4262-c589-4999-9e91-83ea0ba54d22"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Sangre AB+ :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="162" y="100" width="139" height="20" uuid="ee64d58c-353b-4612-8b2b-80c37715176e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jornada_sangre_ab1_jor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="301" y="100" width="103" height="20" uuid="2f876dd0-e364-4b86-b1f7-ccb191bdd064"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Sangre AB- :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="404" y="100" width="151" height="20" uuid="8e66a7ee-efad-4bab-beae-ad68ec955725"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jornada_sangre_ab2_jor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="31" y="120" width="105" height="20" uuid="4e19e213-e666-459d-bcd8-e15087d08d68"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Sangre B+ :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="162" y="120" width="139" height="20" uuid="8129c8fb-b083-40ce-aa7b-5deccd960307"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jornada_sangre_b1_jor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="301" y="120" width="103" height="20" uuid="2d46cf36-3309-469f-9129-c29988c86aca"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Sangre B- :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="404" y="120" width="151" height="20" uuid="5cae8fb8-808c-4fb6-893e-af65bc2518ed"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jornada_sangre_b2_jor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="31" y="140" width="105" height="20" uuid="d88e61b0-a36c-4071-a4b4-5e442fc24c91"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Sangre O+ :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="162" y="140" width="139" height="20" uuid="dc9a0758-5471-4a5e-adf2-0fbe162a5192"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{jornada_sangre_o1_jor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="301" y="140" width="103" height="20" uuid="d72d9094-9cf4-488b-8508-7e85d16659bb"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[  Sangre O- :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="404" y="140" width="151" height="20" uuid="abe8c442-c500-498e-b621-8815455fffb7"/>
+				<textFieldExpression><![CDATA[$F{jornada_sangre_o2_jor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<lastPageFooter>
+		<band height="50">
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="0" y="30" width="100" height="20" uuid="99414ead-7ed0-444b-8e20-404f562aeff6"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="438" y="30" width="80" height="20" uuid="80799bc7-b546-4c7e-883b-a5cb1be55895"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="518" y="30" width="40" height="20" uuid="7590fb12-348e-4e6f-8a64-22f5dadf3202"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="255" splitType="Stretch">
+			<stackedBar3DChart>
+				<chart>
+					<reportElement x="1" y="0" width="554" height="255" uuid="33b8aa40-54ba-463c-bf5a-5b4cd5943d60"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Sangre A+"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{jornada_sangre_a1_jor}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{jornada_sangre_a1_jor}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Sangre A-"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{jornada_sangre_a2_jor}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{jornada_sangre_a2_jor}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Sangre AB+"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{jornada_sangre_ab1_jor}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{jornada_sangre_ab1_jor}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Sangre AB-"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{jornada_sangre_ab2_jor}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{jornada_sangre_ab2_jor}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Sangre O+"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{jornada_sangre_o1_jor}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{jornada_sangre_o1_jor}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Sangre O-"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{jornada_sangre_o2_jor}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{jornada_sangre_o2_jor}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Sangre B+"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{jornada_sangre_b1_jor}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{jornada_sangre_b1_jor}]]></valueExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["Sangre B-"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{jornada_sangre_b2_jor}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{jornada_sangre_b2_jor}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</stackedBar3DChart>
+		</band>
+	</summary>
+</jasperReport>

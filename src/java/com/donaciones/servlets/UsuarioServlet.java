@@ -11,6 +11,9 @@ import com.donaciones.dao.UsuarioDAO;
 import java.io.File;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.HashMap;
@@ -22,8 +25,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JasperRunManager;
+//import net.sf.jasperreports.engine.JREmptyDataSource;
+//import net.sf.jasperreports.engine.JasperRunManager;
 
 /**
  *
@@ -180,6 +184,7 @@ public class UsuarioServlet extends HttpServlet {
         } else if ("Listar Usuarios".equals(accion)) {
             System.out.println("Entro Listar");
             try {
+                
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/bd_donaciones", "dba_donaciones", "donaciones");
 
@@ -195,8 +200,13 @@ public class UsuarioServlet extends HttpServlet {
                 servletOutputStream.write(bytes, 0, bytes.length);
                 servletOutputStream.flush();
                 servletOutputStream.close();
+
             } catch (Exception e) {
-                e.printStackTrace();
+                StringWriter stringWriter = new StringWriter();
+                PrintWriter printWriter = new PrintWriter(stringWriter);
+                e.printStackTrace(printWriter);
+                response.setContentType("text/plain");
+                response.getOutputStream().print(stringWriter.toString());
             }
             request.getRequestDispatcher("RegistrarUsuario.jsp").forward(request, response);
         } else if ("Reporte Usuario".equals(accion)) {
@@ -219,7 +229,6 @@ public class UsuarioServlet extends HttpServlet {
                     parametros.put("id_usu", documento);
 
                     bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parametros, connection);
-
                     response.setContentType("application/pdf");
                     response.setContentLength(bytes.length);
 
@@ -232,7 +241,11 @@ public class UsuarioServlet extends HttpServlet {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
+                StringWriter stringWriter = new StringWriter();
+                PrintWriter printWriter = new PrintWriter(stringWriter);
+                e.printStackTrace(printWriter);
+                response.setContentType("text/plain");
+                response.getOutputStream().print(stringWriter.toString());
             }
         }
 

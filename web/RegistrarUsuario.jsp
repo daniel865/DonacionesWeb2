@@ -48,17 +48,14 @@
 
 <html>
     <head>
-
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registrar Usuario</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrapValidator.min.css" />
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script> 
-        <script src="js/bootstrap.js"></script>
-        <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-        <script type="text/javascript" src="js/additional-methods.min.js"></script>
-        <script type="text/javascript" src="js/jquery.validate.bootstrap.popover.min.js"></script>
-        <script type="text/javascript" src="js/ValidacionesUsuario.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/bootstrapValidator.js"></script>
+        <script type="text/javascript" src="js/validateUsuario.js"></script>
 
         <%if (mensaje != null) {%>
         <script>
@@ -81,6 +78,13 @@
         if (perfil === "Bacteriologo") {
             $("#user_perfil option[value=Bacteriologo]").attr("selected", true);
         }
+        if (perfil === "Administrador"){
+            $("#user_perfil option[value=Administrador]").attr("selected", true);
+        }
+        if (perfil === "Auxiliar"){
+             $("#user_perfil option[value=Auxiliar]").attr("selected", true);
+        }
+        
     });
 
     //alert(estado);
@@ -169,7 +173,7 @@
                         <!-- Coleccion de links del nav parte superior derecha -->
                         <ul class="nav navbar-nav navbar-right navbar-user">
                             <li><a>Ayuda</a></li>
-                            <li><a href="index.html">Salir</a></li>
+                            <li><a href="Logout">Salir</a></li>
                         </ul>
 
                     </div> <!-- Fin Barra Colapsada -->
@@ -291,12 +295,12 @@
 
                         <!-- Groups Buttons -->
                         <div class="btn-group col-lg-offset-4 col-lg-5">
-                            <input type="submit" class="btn btn-default" name="accion" value="Guardar" id="btnguardar" style="margin-left: 10px;" />
+                            <input type="submit" class="btn btn-primary" name="accion" value="Guardar" id="btnguardar" style="margin-left: 10px;" />
 
                             <!-- Split button -->
-                            <div class="btn-group" style="margin-left: 10px;">
-                                <button type="button" class="btn btn-default">Buscar</button>
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <div class="btn-group btn-primary" style="margin-left: 10px;">
+                                <button type="button" class="btn btn-primary">Buscar</button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                     <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
@@ -306,8 +310,9 @@
                                 </ul>
                             </div>
 
-                            <input type="submit" class="btn btn-default" name="accion" value="Modificar" id="btnmodificar" style="margin-left: 10px;" /> 
-                            <button type="button" class="btn btn-default" name="btneliminar" id="btneliminar" style="margin-left: 10px;" >Eliminar</button> 
+                            <input type="submit" class="btn btn-primary" name="accion" value="Modificar" id="btnmodificar" style="margin-left: 10px;" /> 
+                            <button type="reset" class="btn btn-primary" name="btnlimpiar" id="btnlimpiar" style="margin-left: 10px;">Limpiar</button>
+                            
                         </div>
 
                     </fieldset>

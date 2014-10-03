@@ -13,12 +13,12 @@ public class Hospital {
     private String tipo;
     private String razon_social;
     private String nivel;
-    private String departamento;
-    private String municipio;
+    private int departamento;
+    private int municipio;
     private String direccion;
-    private long telefono;
+    private String telefono;
     private String nombre_representante;
-    private long telefono_representante;
+    private String telefono_representante;
     private String correo_representante;
     private String estado;
 
@@ -37,7 +37,7 @@ public class Hospital {
      * @param correo_representante Correo del representante del hospital
      * @param estado Estado del hospital
      */
-    public Hospital(String nit, String tipo, String razon_social, String nivel, String departamento, String municipio, String direccion, long telefono, String nombre_representante, long telefono_representante, String correo_representante, String estado) {
+    public Hospital(String nit, String tipo, String razon_social, String nivel, int departamento, int municipio, String direccion, String telefono, String nombre_representante, String telefono_representante, String correo_representante, String estado) {
         this.nit = nit;
         this.tipo = tipo;
         this.razon_social = razon_social;
@@ -136,7 +136,7 @@ public class Hospital {
      * Obtiene el valor del departamento del hospital
      * @return Nombre del Departamento
      */
-    public String getDepartamento() {
+    public int getDepartamento() {
         return departamento;
     }
 
@@ -144,7 +144,7 @@ public class Hospital {
      * Asigna un valor al departamento del hospital
      * @param departamento Nombre del departamento del hospital
      */
-    public void setDepartamento(String departamento) {
+    public void setDepartamento(int departamento) {
         this.departamento = departamento;
     }
 
@@ -152,7 +152,7 @@ public class Hospital {
      * Obtiene el valor del municipio del hospital
      * @return Nombre del municipio del hospital
      */
-    public String getMunicipio() {
+    public int getMunicipio() {
         return municipio;
     }
 
@@ -160,7 +160,7 @@ public class Hospital {
      * Asigna un valor al municipio del hospital
      * @param municipio Municipio del hospital
      */
-    public void setMunicipio(String municipio) {
+    public void setMunicipio(int municipio) {
         this.municipio = municipio;
     }
 
@@ -184,7 +184,7 @@ public class Hospital {
      * Obtiene el valor del teléfono del hospital
      * @return Número de teléfono del hospital
      */
-    public long getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
@@ -192,7 +192,7 @@ public class Hospital {
      * Asigna un valor para el número de teléfono del hospital
      * @param telefono Número de tel´éfono del hospital
      */
-    public void setTelefono(long telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -216,7 +216,7 @@ public class Hospital {
      * Obtiene el valor del número de teléfono del representante
      * @return 
      */
-    public long getTelefono_representante() {
+    public String getTelefono_representante() {
         return telefono_representante;
     }
 
@@ -224,7 +224,7 @@ public class Hospital {
      *
      * @param telefono_representante
      */
-    public void setTelefono_representante(long telefono_representante) {
+    public void setTelefono_representante(String telefono_representante) {
         this.telefono_representante = telefono_representante;
     }
 

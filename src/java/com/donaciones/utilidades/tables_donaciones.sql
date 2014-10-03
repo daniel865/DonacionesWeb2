@@ -12,23 +12,23 @@ estado_usu varchar(15)
 
 
 CREATE TABLE DONANTE(
-tipodocumento_don varchar(10),
+tipodocumentto_don varchar(10),
 nroidentificacion_don varchar(20),
 nombres_don varchar(50),
 apellido1_don varchar(20),
 apellido2_don varchar(20),
-telefono_don long,
+telefono_don varchar(10),
 direccion_don varchar(50),
-correo_don varchar(30),
-fec_nac_don date,
-fec_doc_don date,
-enfermedades_don varchar(100),
-habitos_don  varchar(80),
-nom_res_don varchar(50),
-tel_res_don long,
-genero_don varchar(10),
 departamento_don int,
 municipio_don int,
+correo_don varchar(30),
+fec_nac_don varchar(15),
+fec_doc_don varchar(15),
+enfermedades_don int(5),
+habitos_don  int(5),
+nom_res_don varchar(50),
+tel_res_don varchar(10),
+genero_don varchar(10),
 estado_don varchar(10)
 );
 
@@ -41,9 +41,9 @@ nivel_hos varchar(10),
 departamento_hos int,
 municipio_hos int,
 direccion_hos varchar(50),
-telefono_hos long,
+telefono_hos varchar(15),
 nombre_rep_hos  varchar(30),
-tel_rep_hos long,
+tel_rep_hos varchar(15),
 correo_rep_hos varchar(30),
 estado_hos varchar(10)
 );

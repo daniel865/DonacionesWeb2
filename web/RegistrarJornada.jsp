@@ -18,7 +18,7 @@
     String descripcion = request.getAttribute("descripcion") != null ? (String) request.getAttribute("descripcion") : "";
     String fecha_programada = request.getAttribute("fecha_programada") != null ? (String) request.getAttribute("fecha_programada") : "";
     String departamento = request.getAttribute("departamento") != null ? (String) request.getAttribute("departamento") : "";
-    String municipio = request.getAttribute("municipio") != null ? (String) request.getAttribute("municipio") : "";
+    List municipio = request.getAttribute("listMunDep") != null ? (List) request.getAttribute("listMunDep") : null;
     String direccion = request.getAttribute("direccion") != null ? (String) request.getAttribute("direccion") : "";
     String donantes = request.getAttribute("donantes") != null ? (String) request.getAttribute("donantes") : "";
     String sangre_a1 = request.getAttribute("sangre_a1") != null ? (String) request.getAttribute("sangre_a1") : "";
@@ -33,7 +33,7 @@
     String estado = request.getAttribute("estado") != null ? (String) request.getAttribute("estado") : "";
     List<Departamento> listDepartamentos = request.getAttribute("listDepartamentos") != null ? (List<Departamento>) request.getAttribute("listDepartamentos") : null;
     List<Municipio> listMunicipios = request.getAttribute("listMunicipios") != null ? (List<Municipio>) request.getAttribute("listMunicipios") : null;
-    boolean load = (Boolean) request.getAttribute("load") != null ? (Boolean) request.getAttribute("load") : false;
+    //boolean load = (Boolean) request.getAttribute("load") != null ? (Boolean) request.getAttribute("load") : false;
     String cargoDepartamentos;
     String cargoMunicipios;
 
@@ -66,15 +66,30 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registrar Jornada de Donación</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrapValidator.min.css" />
         <script type="text/javascript" src="js/jquery-1.10.2.js"></script> 
-        <script src="js/bootstrap.js"></script>
-        <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-        <script type="text/javascript" src="js/jquery.validate.bootstrap.popover.min.js"></script>
-        <script type="text/javascript" src="js/ValidacionesJornada.js"></script>
-        <!--<script type="text/javascript" src="js/loadMunicipios.js"></script>-->
-        <!--<script type="text/javascript" src="js/Json.js"></script>-->
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/bootstrapValidator.js"></script>
+        <script type="text/javascript" src="js/validateJornada.js"></script>
+        <script type="text/javascript" src="js/Listas.js"></script>
     </head>
     <body>
+        
+        <%if (mensaje != null) {%>
+        <script>
+        $(document).ready(function () {
+            var departamento = '<%=departamento%>';
+            var municipio = '<%=municipio%>';
+            var estado = '<%=estado%>';
+            $("#departamento option[value=2]").attr("selected", true);
+            $("#municipio option[value=82]").attr("selected", true);
+            $("#estado option[value="+estado+"]").attr("selected", true);
+        });
+
+
+
+        </script>
+        <%}%>
 
         <script type="text/javascript">
     $(document).ready(function () {
@@ -110,6 +125,13 @@
         }
     });
         </script>
+        <script>
+            $(document).ready(getList('D', function (values) {
+                for (var idx in values) {
+                    $('#departamento').append('<option value=' + values[idx].id + '>' + values[idx].nombre + '</option>');
+                }
+            }));
+        </script>        
 
         <div id="wrapper">
 
@@ -155,7 +177,7 @@
                         <!-- Coleccion de links del nav parte superior derecha -->
                         <ul class="nav navbar-nav navbar-right navbar-user">
                             <li><a>Ayuda</a></li>
-                            <li><a href="index.html">Salir</a></li>
+                            <li><a href="Logout">Salir</a></li>
                         </ul>
 
                     </div> <!-- Fin Barra Colapsada -->
@@ -163,9 +185,11 @@
                 </div>
             </nav>
 
+            <br/>
 
             <!--  Inicio del Formulario-->
             <div class="container">
+
 
                 <form class="form-horizontal" action="JornadaServlet" method="POST" id="FormJornada" name="FormJornada">
                     <fieldset>
@@ -206,12 +230,6 @@
                             <div class="col-md-4 input-group">
                                 <select id="departamento" name="departamento" class="form-control">
                                     <option>Seleccione un Departamento</option>
-                                    <%
-                                        for (int index = 0; listDepartamentos != null && index < listDepartamentos.size(); index++) {
-                                            Departamento departamento1 = listDepartamentos.get(index);
-                                    %>
-                                    <option value="<%=departamento1.getId()%>"><%=departamento1.getNombre()%></option>
-                                    <%}%>
                                 </select>
                             </div>
                         </div>
@@ -222,11 +240,6 @@
                             <div class="col-md-4 input-group">
                                 <select id="municipio" name="municipio" class="form-control">
                                     <option>Seleccione un Municipio</option>
-                                    <option value="1">Medellín</option>
-                                    <option value="2">Copacabana</option>
-                                    <option value="3">itaguí</option>
-                                    <option value="4">La Estrella</option>
-                                    <option value="5">Sabaneta</option>
                                 </select>
 
                             </div>
@@ -253,7 +266,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="sangre_a1">Cantidad Sangre A+</label>  
-                            <div class="col-md-4">
+                            <div class="col-md-4 input-group">
                                 <input id="sangre_a1" name="sangre_a1" type="text" placeholder="Cm3" class="form-control input-md" value="<%= sangre_a1%>" >
                             </div>
                         </div>
@@ -261,7 +274,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="sangre_a2">Cantidad Sangre A-</label>  
-                            <div class="col-md-4">
+                            <div class="col-md-4 input-group">
                                 <input id="sangre_a2" name="sangre_a2" type="text" placeholder="Cm3" class="form-control input-md" value="<%= sangre_a2%>">
 
                             </div>
@@ -270,7 +283,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="sangre_ab1">Cantidad Sangre AB+</label>  
-                            <div class="col-md-4">
+                            <div class="col-md-4 input-group">
                                 <input id="sangre_ab1" name="sangre_ab1" type="text" placeholder="Cm3" class="form-control input-md" value="<%= sangre_ab1%>" >
 
                             </div>
@@ -279,7 +292,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="sangre_ab2">Cantidad Sangre AB-</label>  
-                            <div class="col-md-4">
+                            <div class="col-md-4 input-group">
                                 <input id="sangre_ab2" name="sangre_ab2" type="text" placeholder="Cm3" class="form-control input-md" value="<%= sangre_ab2%>">
 
                             </div>
@@ -288,7 +301,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="sangre_b1">Cantidad Sangre B+</label>  
-                            <div class="col-md-4">
+                            <div class="col-md-4 input-group">
                                 <input id="sangre_b1" name="sangre_b1" type="text" placeholder="Cm3" class="form-control input-md" value="<%= sangre_b1%>">
 
                             </div>
@@ -297,7 +310,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="sangre_b2">Cantidad Sangre B-</label>  
-                            <div class="col-md-4">
+                            <div class="col-md-4 input-group">
                                 <input id="sangre_b2" name="sangre_b2" type="text" placeholder="Cm3" class="form-control input-md" value="<%= sangre_b2%>">
 
                             </div>
@@ -306,7 +319,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="sangre_o1">Cantidad Sangre O+</label>  
-                            <div class="col-md-4">
+                            <div class="col-md-4 input-group">
                                 <input id="sangre_o1" name="sangre_o1" type="text" placeholder="Cm3" class="form-control input-md" value="<%= sangre_o1%>">
 
                             </div>
@@ -315,7 +328,7 @@
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="sangre_o2">Cantidad Sangre O-</label>  
-                            <div class="col-md-4">
+                            <div class="col-md-4 input-group">
                                 <input id="sangre_o2" name="sangre_o2" type="text" placeholder="Cm3" class="form-control input-md" value="<%= sangre_o2%>">
 
                             </div>
@@ -324,7 +337,7 @@
                         <!-- Textarea -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="observaciones">Observaciones</label>
-                            <div class="col-md-4">                     
+                            <div class="col-md-4 input-group">                     
                                 <textarea class="form-control" id="observaciones" name="observaciones"><%= observaciones%></textarea>
                             </div>
                         </div>
@@ -355,7 +368,7 @@
                         <input type="submit" class="btn btn-primary" name="accion" value="Guardar" id="btnguardar" style="margin-left: 10px;"/>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalBuscar" name="btnbuscar" id="btnbuscar" style="margin-left: 10px;">Consultar</button>
                         <input type="submit" class="btn btn-primary" name="accion" value="Modificar" id="btnmodificar" style="margin-left: 10px;"/> 
-                        <button type="button" class="btn btn-primary" name="btneliminar" id="btneliminar" style="margin-left: 10px;">Eliminar</button> 
+                        <button type="reset" class="btn btn-primary" name="btnlimpiar" id="btnlimpiar" style="margin-left: 10px;">Limpiar</button>
                     </div>
 
                 </form>
@@ -395,24 +408,16 @@
 
         </div>
 
-
-        <script>
-            $(document).ready(function () {
-                $("#departamento").click(function () {
-                    var department = $("#departamento").val();
-                    $.ajax({
-                        dataType: "text",
-                        url: 'JornadaServlet?value=' + department,
-                        data: department,
-                        success: function (data, textStatus, jqXHR) {
-                        console.log('entro sucess: ' + data);
-                    }, error: function (jqXHR, textStatus, errorThrown) {
-                        console.log('entro error');
-                    }
-                    });
-                });
-            });
-        </script>
-
     </body>
+    <script>
+        $('#departamento').change(function () {
+            $('#municipio').empty();
+            var departamento = $('#departamento').val();
+            getList('M', function (values) {
+                for (var idx in values) {
+                    $('#municipio').append('<option value=' + values[idx].id + '>' + values[idx].nombre + '</option>');
+                }
+            }, departamento);
+        });
+    </script>
 </html>
