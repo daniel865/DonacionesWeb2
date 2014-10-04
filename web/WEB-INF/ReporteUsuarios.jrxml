@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteUsuario" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c04a25dd-9b29-42eb-9b4b-5df76dfd69d2">
-	<property name="ireport.zoom" value="3.0"/>
-	<property name="ireport.x" value="573"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -38,7 +38,7 @@ FROM
 			<staticText>
 				<reportElement x="86" y="13" width="385" height="46" uuid="73b8064f-d331-4648-8884-c4f579b46388"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Serif" size="22" isBold="true" isItalic="true" isUnderline="true"/>
+					<font fontName="Serif" size="26" isBold="true" isItalic="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Listado de Usuarios]]></text>
 			</staticText>
@@ -144,32 +144,32 @@ FROM
 			<textField>
 				<reportElement x="10" y="0" width="76" height="20" uuid="45d344d0-e330-405b-8dd1-c1d5f266d7d3"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[ $F{USUARIO_nroidentificacion_usu}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{USUARIO_nroidentificacion_usu}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="96" y="0" width="101" height="20" uuid="0d2b46c7-9fbb-4b43-a40e-3cae7daaed2b"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[ $F{USUARIO_nombres_usu}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{USUARIO_nombres_usu}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="207" y="1" width="72" height="20" uuid="daa1a374-7c9a-42dd-90b0-109525ee1c38"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[ $F{USUARIO_apellido1_usu}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{USUARIO_apellido1_usu}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="289" y="1" width="76" height="20" uuid="764e9a0c-a002-4703-a878-55781f68a407"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[ $F{USUARIO_apellido2_usu}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{USUARIO_apellido2_usu}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="375" y="1" width="107" height="20" uuid="407ac7ae-980d-4afd-baa4-b39c32839de8"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[ $F{USUARIO_correo_usu}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{USUARIO_correo_usu}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="492" y="1" width="63" height="20" uuid="1245a33c-759e-4ce8-b3a6-aa09b0f9413b"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[ $F{USUARIO_usuario_usu}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{USUARIO_usuario_usu}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

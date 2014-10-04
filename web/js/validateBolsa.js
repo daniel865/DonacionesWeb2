@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-$(document).ready(function(){
+$(document).ready(function () {
     $("#FormBolsas").bootstrapValidator({
         fields: {
             codigo: {
@@ -67,5 +67,21 @@ $(document).ready(function(){
                 }
             }
         }
+    });
+});
+
+$(document).ready(function (){
+    $("#btnlimpiar").click(function (){
+        $('#FormBolsas').bootstrapValidator('resetForm', true);
+    });
+});
+
+$(document).ready(function () {
+    $("#btnlimpiar").click(function () {
+        $(':input', '#FormBolsas')
+                .not(':button, :submit, :reset, :hidden')
+                .val('')
+                .removeAttr('checked')
+                .removeAttr('selected');
     });
 });

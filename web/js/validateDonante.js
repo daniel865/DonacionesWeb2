@@ -146,3 +146,19 @@ $(document).ready(function () {
         }
     });
 });
+
+$(document).ready(function (){
+    $("#btnlimpiar").click(function (){
+        $('#FormDonante').bootstrapValidator('resetForm', true);
+    });
+});
+
+$(document).ready(function () {
+    $("#btnlimpiar").click(function (){
+        $(':input', '#FormDonante')
+            .not(':button, :submit, :reset, :hidden')
+            .val('')
+            .removeAttr('checked')
+            .removeAttr('selected');
+    });
+});

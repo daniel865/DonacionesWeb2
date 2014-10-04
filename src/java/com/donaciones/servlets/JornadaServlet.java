@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JasperRunManager;
 
 /**
  *
@@ -232,6 +233,7 @@ public class JornadaServlet extends HttpServlet {
                 jornada = jornadaDAO.buscarJornada(codigo);
 
                 if (jornada != null) {
+
                     Class.forName("com.mysql.jdbc.Driver");
                     Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/bd_donaciones", "dba_donaciones", "donaciones");
 
@@ -242,7 +244,7 @@ public class JornadaServlet extends HttpServlet {
                     HashMap parametros = new HashMap();
                     parametros.put("cod_jor", codigo);
 
-//                    bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parametros, connection);
+                    bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), parametros, connection);
                     response.setContentType("application/pdf");
                     response.setContentLength(bytes.length);
 

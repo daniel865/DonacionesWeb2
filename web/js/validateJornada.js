@@ -128,3 +128,19 @@ $(document).ready(function () {
         }
     });
 });
+
+$(document).ready(function (){
+    $("#btnlimpiar").click(function (){
+        $('#FormJornada').bootstrapValidator('resetForm', true);
+    });
+});
+
+$(document).ready(function () {
+    $("#btnlimpiar").click(function () {
+        $(':input', '#FormJornada')
+                .not(':button, :submit, :reset, :hidden')
+                .val('')
+                .removeAttr('checked')
+                .removeAttr('selected');
+    });
+});

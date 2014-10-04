@@ -123,3 +123,20 @@ $(document).ready(function () {
         }
     });
 });
+
+$(document).ready(function (){
+    $("#btnlimpiar").click(function (){
+        $('#FormUsuario').bootstrapValidator('resetForm', true);
+    });
+});
+
+$(document).ready(function () {
+    $("#btnlimpiar").click(function (){
+        $('#FormUsuario').bootstrapValidator('resetForm', true);
+        $(':input', '#FormUsuario')
+            .not(':button, :submit, :reset, :hidden')
+            .val('')
+            .removeAttr('checked')
+            .removeAttr('selected');
+    });
+});
