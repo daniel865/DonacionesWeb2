@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="28ee48db-bc4f-4827-9cbf-8d01a6b4c08e">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     USUARIO.`nroidentificacion_usu` AS USUARIO_nroidentificacion_usu,
+     USUARIO.`nombres_usu` AS USUARIO_nombres_usu,
+     USUARIO.`apellido1_usu` AS USUARIO_apellido1_usu,
+     USUARIO.`apellido2_usu` AS USUARIO_apellido2_usu,
+     USUARIO.`usuario_usu` AS USUARIO_usuario_usu,
+     USUARIO.`correo_usu` AS USUARIO_correo_usu,
+     USUARIO.`contrasenia_usu` AS USUARIO_contrasenia_usu,
+     USUARIO.`perfil_usu` AS USUARIO_perfil_usu,
+     USUARIO.`estado_usu` AS USUARIO_estado_usu
+FROM
+     `USUARIO` USUARIO]]>
+	</queryString>
+	<field name="USUARIO_nroidentificacion_usu" class="java.lang.String"/>
+	<field name="USUARIO_nombres_usu" class="java.lang.String"/>
+	<field name="USUARIO_apellido1_usu" class="java.lang.String"/>
+	<field name="USUARIO_apellido2_usu" class="java.lang.String"/>
+	<field name="USUARIO_usuario_usu" class="java.lang.String"/>
+	<field name="USUARIO_correo_usu" class="java.lang.String"/>
+	<field name="USUARIO_contrasenia_usu" class="java.lang.String"/>
+	<field name="USUARIO_perfil_usu" class="java.lang.String"/>
+	<field name="USUARIO_estado_usu" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="4a3833a2-14ed-4d6a-aec6-2f2f922e6bb3"/>
+				<staticText>
+					<reportElement x="20" y="20" width="313" height="43" forecolor="#FFFFFF" uuid="fe3e0ed7-43a8-4709-bfb9-9fd2a4ff8f94"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Reporte Usuarios]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="b5c46185-1b96-4cb7-8c86-2462a6982f74"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Sistema de Donaciones]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="08a1997d-aa02-4c7a-b73a-b43e43b87f6e"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="279a205b-1a9b-44dc-a0a0-27b668fb3488"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Identificación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="111" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7181b320-2c8b-4055-8851-b19d76c184ce"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="222" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="3686d745-67fb-40f8-aecc-40159c95be01"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="333" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="14ec03b8-f1f3-4081-a2d1-78448f42791a"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Perfil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="444" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f1f16c8c-dbdd-46c6-91c2-5e3f6501d7a2"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="9723bc36-a1d0-4abd-aa4b-e95482441b52"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="0" width="125" height="20" uuid="d9fa2029-fbda-4602-9a32-a520fecfc466"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USUARIO_nroidentificacion_usu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="0" width="115" height="20" uuid="31b4cf34-bc59-4bfc-b114-9c66f52d8523"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USUARIO_nombres_usu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="0" width="122" height="20" uuid="d4f4ccfd-d5f3-4c94-b51e-d37d8a929511"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USUARIO_apellido1_usu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="362" y="0" width="106" height="20" uuid="523f7785-56aa-437c-b302-b68692868a02"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USUARIO_perfil_usu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="468" y="0" width="88" height="20" uuid="bd1d1049-41db-4de7-99a6-10ae0cf389b3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USUARIO_estado_usu}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="e6468449-012a-4209-9aa2-d086e043b2c6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="eedfd57c-76bb-474a-8e4c-e015526885dc"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="7981c31a-e3df-4875-bc0c-0a96324eebab"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

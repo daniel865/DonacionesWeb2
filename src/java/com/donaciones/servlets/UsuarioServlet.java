@@ -189,7 +189,7 @@ public class UsuarioServlet extends HttpServlet {
                 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/bd_donaciones", "dba_donaciones", "donaciones");
 
                 ServletOutputStream servletOutputStream = response.getOutputStream();
-                File reportFile = new File(getServletConfig().getServletContext().getRealPath("WEB-INF/ReporteUsuarios.jasper"));
+                File reportFile = new File(getServletConfig().getServletContext().getRealPath("WEB-INF/ReporteUsuario_1.jasper"));
                 byte[] bytes = null;
 
                 bytes = JasperRunManager.runReportToPdf(reportFile.getPath(), new HashMap(), connection);

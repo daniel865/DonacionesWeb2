@@ -52,7 +52,7 @@ $(document).ready(function () {
             apellido2: {
                 validators: {
                     regexp: {
-                        regexp: /^[a-z\s]+$/i,
+                        regexp: /^[a-z\s]+$/i, 
                         message: 'Letras únicamente'
                     },
                     stringLength: {
